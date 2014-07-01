@@ -5,3 +5,6 @@ CREATE TABLE `usuario`(
 	`user` VARCHAR(16) , 
 	`pass` VARCHAR(40) , 
 PRIMARY KEY (`id_user`)); 
+
+-- creacion del usuario admin con password cifrada en sha1 password
+INSERT INTO `db_estudio_juridico`.`usuario`(`id_user`,`user`,`pass`) VALUES ( '1','admin','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8'); 
