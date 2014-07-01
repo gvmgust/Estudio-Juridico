@@ -10,7 +10,7 @@ import utils.ManagerArchivo;
 
 /**
  *
- * @author Gustavo Vargas M
+ * @author [GVM - MABH - LCOS]
  */
 public class Main {
 

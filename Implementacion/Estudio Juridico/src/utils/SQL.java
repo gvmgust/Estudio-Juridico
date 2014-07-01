@@ -8,7 +8,7 @@ package utils;
 
 /**
  *
- * @author Gustavo Vargas M
+ * @author [GVM - MABH - LCOS]
  */
 public abstract class SQL {
     

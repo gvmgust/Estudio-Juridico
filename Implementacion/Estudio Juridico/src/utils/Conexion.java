@@ -1,5 +1,10 @@
 package utils;
 
+/**
+ *
+ * @author [GVM - MABH - LCOS]
+ */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
