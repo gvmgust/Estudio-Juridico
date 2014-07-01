@@ -86,7 +86,8 @@ public class ManagerArchivo {
                     if (Character.isAlphabetic(c[k])) {
                         etiqueta += c[k];
                     }
-                    if (etiqueta.toLowerCase().equals("port")
+                    if (etiqueta.toLowerCase().equals("user")
+                            || etiqueta.toLowerCase().equals("password")
                             || etiqueta.toLowerCase().equals("host")
                             || etiqueta.toLowerCase().equals("db")) {
                         e = false;
@@ -116,9 +117,10 @@ public class ManagerArchivo {
             }
         }
         try {
-            Main.port = Integer.parseInt(map.get("port").toString());
+            Main.user = map.get("user").toString();
             Main.host = map.get("host").toString();
             Main.db = map.get("db").toString();
+            Main.password = map.get("password").toString();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR al leer archivo de configuracion: " + e.getMessage());
             System.exit(1);
