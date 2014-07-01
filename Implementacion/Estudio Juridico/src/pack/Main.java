@@ -1,5 +1,7 @@
 package pack;
 
+import gui.Login;
+import utils.Conexion;
 import utils.ManagerArchivo;
 
 /*
@@ -22,7 +24,8 @@ public class Main {
     }
     public static String db;
     public static String host;
-    public static int port;
-    ManagerArchivo managerArchivo = new ManagerArchivo();
-    
+    public static String user;
+    public static String password;
+    public static ManagerArchivo managerArchivo = new ManagerArchivo();
+    public static Conexion con = new Conexion(user,password,host,db);
 }
