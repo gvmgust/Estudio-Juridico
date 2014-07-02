@@ -39,6 +39,8 @@ public abstract class SQL {
         return hash;
     }
     
-    
+    public static String iniciarSecion(String user, String pass){
+        return "SELECT id_user FROM `usuario` WHERE `user`='"+user+"' AND `pass`='"+sha1(pass)+"'";
+    }
     
 }
