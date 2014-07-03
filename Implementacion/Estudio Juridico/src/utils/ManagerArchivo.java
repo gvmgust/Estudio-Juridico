@@ -128,6 +128,7 @@ public class ManagerArchivo {
     }
 
     public static void escribirLog(String s) {
+        s = s.toUpperCase();
         BufferedWriter out = null;
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
