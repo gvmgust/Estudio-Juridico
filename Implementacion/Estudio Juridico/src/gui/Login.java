@@ -170,6 +170,7 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Usuario o Contraseña equivocada\ntiene "+intentos+" intentos");
             else{
                 JOptionPane.showMessageDialog(null,"Ha superado el número máximo de intentos","ERROR",2);
+                ManagerArchivo.escribirLog("["+new Date()+"] ERROR AL INTENTAR LOGEAR CON LA CUENTA (NUMERO DE INTENTOS SUPERADOS): "+jTextField1.getText());
                 System.exit(intentos);
             }
         }
