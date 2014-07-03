@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package utils;
 
 import java.security.MessageDigest;
@@ -16,7 +15,7 @@ import java.util.logging.Logger;
  * @author [GVM - MABH - LCOS]
  */
 public abstract class SQL {
-    
+
     public static String sha1(String string) {
         String hash = "";
         try {
@@ -38,9 +37,16 @@ public abstract class SQL {
         }
         return hash;
     }
-    
-    public static String iniciarSecion(String user, String pass){
-        return "SELECT id_user FROM `usuario` WHERE `user`='"+user+"' AND `pass`='"+sha1(pass)+"'";
+
+    public static String iniciarSecion(String user, String pass) {
+        return "SELECT id_user FROM `usuario` WHERE `user`='" + user + "' AND `pass`='" + sha1(pass) + "'";
     }
-    
+
+    public static String mostrarDatosUsuario(int id) {
+        return "SELECT `titulo`.`titulo`,`persona`.*, `usuario`.`tipo`"
+                + "FROM `usuario` INNER JOIN `persona` INNER JOIN `titulo` "
+                + "ON `persona`.`ci` = `usuario`.`ci` AND `persona`.`id_titulo` = `titulo`.`id_titulo`"
+                + "WHERE `id_user`='" + id + "';";
+    }
+
 }
