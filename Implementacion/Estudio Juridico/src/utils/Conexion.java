@@ -7,31 +7,20 @@ package utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pack.Main;
 
 public class Conexion {    
 
     private static Conexion myInstance;
-    private String user;
-    private String password;
-    private String host;
-    private String url;
     private Connection conn = null;
     private Statement stm;
-    private String db;
+    private final String url;
 
     private Conexion() {
-        this.user = Main.user;
-        this.password = Main.password;
-        this.db = Main.db;
-        this.host = Main.host;
-        this.url = "jdbc:mysql://" + this.host + "/" + this.db;
+        this.url = "jdbc:mysql://" + Main.host + "/" + Main.db;
         conectar();
     }
 
@@ -45,10 +34,10 @@ public class Conexion {
     private void conectar() {
         try {
             Class.forName("org.gjt.mm.mysql.Driver");
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(url, Main.user, Main.password);
             if (conn != null) {
                 stm = conn.createStatement();
-                stm.addBatch("use " + db + ";");
+                stm.addBatch("use " + Main.db + ";");
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,
@@ -73,6 +62,7 @@ public class Conexion {
             stm.executeUpdate(consulta);
         } catch (Exception ex) {
             System.out.println("Error en la ejecucion de: " + consulta + "\n" + ex.getMessage());
+            ManagerArchivo.escribirLog("["+new Date()+"] ERROR AL EJECUTAR SQL :'"+consulta+"' :"+ex.getMessage());
         }
     }
 
@@ -82,6 +72,7 @@ public class Conexion {
             rs = stm.executeQuery(consulta);
         } catch (Exception ex) {
             System.out.println("Error realizar la Consutla: \n" + consulta + "\n" + ex.getMessage());
+            ManagerArchivo.escribirLog("["+new Date()+"] ERROR AL EJECUTAR SQL :'"+consulta+"' :"+ex.getMessage());
         }
         return rs;
     }
