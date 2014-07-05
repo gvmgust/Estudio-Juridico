@@ -32,6 +32,7 @@ public class Main {
      */
     public static void main(String[] args) {
         style();
+        con = new Conexion(user,password,host,db);
         login = new Login();
     }
     
@@ -89,6 +90,6 @@ public class Main {
     public static String user;
     public static String password;
     public static ManagerArchivo managerArchivo = new ManagerArchivo();
-    public static Conexion con = new Conexion(user,password,host,db);
+    public static Conexion con;
     public static Login login;
 }

@@ -10,8 +10,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Conexion {
 
@@ -40,9 +42,17 @@ public class Conexion {
                 stm = conn.createStatement();
                 stm.addBatch("use " + db + ";");
             }
-        } catch (SQLException | ClassNotFoundException ex) {
-            System.out.println("Error al conectarse \n");
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, 
+                    "SE PRODUJO UN ERROR MIENTRAS SE INTENTABA "
+                    + "\nCONECTAR A LA BASE DE DATOS.\n\n"
+                    + "REVISE EL ARCHIVO DE CONFIGURACION Y\n"
+                    + "VERIFIQUE SI SU CONFIGURACION ES CORRECTA\n\n"
+                    + "DE PERSISTIR EL PROBLEMA \n"
+                    + "CONTACTE CON EL ADMINISTRADOR DE SISTEMAS",
+                    "ERROR AL INTENTAR CONECTAR A LA BASE DE DATOS",JOptionPane.ERROR_MESSAGE);
+            ManagerArchivo.escribirLog("["+new Date()+"] ERROR AL INTENTAR CONECTAR A LA BASE DE DATOS ->"+ex.getMessage());
+            System.exit(0);
         }
     }
 
