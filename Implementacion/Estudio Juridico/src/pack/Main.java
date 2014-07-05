@@ -32,7 +32,7 @@ public class Main {
      */
     public static void main(String[] args) {
         style();
-        con = new Conexion(user,password,host,db);
+        con = Conexion.getInstance();
         login = new Login();
     }
     
