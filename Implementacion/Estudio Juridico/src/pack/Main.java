@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import utils.Conexion;
 import utils.Data;
@@ -20,7 +21,6 @@ import utils.SQL;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author [GVM - MABH - LCOS]
@@ -35,17 +35,18 @@ public class Main {
         con = Conexion.getInstance();
         login = new Login();
     }
-    
+
     public static void style() {
         try {
             javax.swing.UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
             LiquidLookAndFeel.setLiquidDecorations(true);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR ESTILO DE VENTANAS \n"+ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            ManagerArchivo.escribirLog("["+new Date()+"] ERROR AL CARGAR ESTILO DE VENTANAS ->"+ex.getMessage());
         }
     }
-    
-    public static void iniciarSecion(int id_user){
+
+    public static void iniciarSecion(int id_user) {
         ResultSet rs = con.consultar(SQL.mostrarDatosUsuario(id_user));
         String titulo = "";
         String ci = "";
@@ -53,38 +54,41 @@ public class Main {
         String apellidoP = "";
         String apellidoM = "";
         int tipo = 0;
-        try{
-            while (rs.next()){
+        try {
+            while (rs.next()) {
                 titulo = rs.getString("titulo");
                 ci = rs.getString("ci");
                 nombre = rs.getString("nombre");
                 apellidoP = rs.getString("apellido_paterno");
-                apellidoM = rs.getString("apellido_materno");   
+                apellidoM = rs.getString("apellido_materno");
                 tipo = rs.getInt("tipo");
             }
-        }catch(Exception e){
-            ManagerArchivo.escribirLog("["+new Date()+"] ERROR->"+e.getMessage());
+        } catch (Exception e) {
+            ManagerArchivo.escribirLog("[" + new Date() + "] ERROR->" + e.getMessage());
         }
-        ManagerArchivo.escribirLog("["+new Date()+"] "+nombre+" "+apellidoP+" "+apellidoM+" Inicia sesión");
+        ManagerArchivo.escribirLog("[" + new Date() + "] " + nombre + " " + apellidoP + " " + apellidoM + " Inicia sesión");
         login.dispose();
-        switch(tipo){
-            case Data.SECRETARIA:{
+        switch (tipo) {
+            case Data.SECRETARIA: {
                 new GuiSecretaria();
-            }break;
-            case Data.ABOGADO:{
+            }
+            break;
+            case Data.ABOGADO: {
                 new GuiAbogado();
-            }break;
-            case Data.ADMINISTRADOR:{
+            }
+            break;
+            case Data.ADMINISTRADOR: {
                 new GuiAdmin();
-            }break;
+            }
+            break;
             default: {
-                ManagerArchivo.escribirLog("["+new Date()+"] ERROR: \""+tipo+"\" es un tipo de Usuario no Definido en el Sistema");
+                ManagerArchivo.escribirLog("[" + new Date() + "] ERROR: \"" + tipo + "\" es un tipo de Usuario no Definido en el Sistema");
                 System.exit(-1);
             }
         }
-        System.out.println(ci+" | "+titulo+" | "+nombre+" | "+apellidoP+" | "+apellidoM);
+        System.out.println(ci + " | " + titulo + " | " + nombre + " | " + apellidoP + " | " + apellidoM);
     }
-    
+
     public static String db;
     public static String host;
     public static String user;
