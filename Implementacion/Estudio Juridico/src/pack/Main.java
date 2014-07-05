@@ -1,3 +1,15 @@
+/*
+ * ESTE PROYECTO ES DESARROLLADO POR GUSTAVO VARGAS MIRANDA- MARCO AURELIO BARBA HENSLER
+ * Y LUIS CARLO OSINAGA SORIA, PARA LA MATERIA DE SISTEMAS DE INFORMACION 2
+ * DE LA UNIVERSIDAD AUTONOMA GABRIEL RENE MORENO EN LA FACULTAD INTEGRAL DEL CHACO
+ * LOS DERECHOS INTELECTUALES DE ESTE SISTEMAS PERTENECEN A DICHA UNIVERSIDAD
+ * Y ES DESARROLLADO CON FINES ACADEMICOS, POR LO QUE LA VENTA Y O COPIA PARCIAL O TOTAL
+ * SOLO DEBERIA REALIZARSE PARA LOS MISMOS FINES
+ */
+/**
+ *
+ * @author [GVM - MABH - LCOS]
+ */
 package pack;
 
 import com.birosoft.liquid.LiquidLookAndFeel;
@@ -13,20 +25,8 @@ import utils.Data;
 import utils.ManagerArchivo;
 import utils.SQL;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author [GVM - MABH - LCOS]
- */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         style();
         con = Conexion.getInstance();
@@ -38,8 +38,8 @@ public class Main {
             javax.swing.UIManager.setLookAndFeel("com.birosoft.liquid.LiquidLookAndFeel");
             LiquidLookAndFeel.setLiquidDecorations(true);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR ESTILO DE VENTANAS \n"+ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-            ManagerArchivo.escribirLog("["+new Date()+"] ERROR AL CARGAR ESTILO DE VENTANAS ->"+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "ERROR AL CARGAR ESTILO DE VENTANAS \n" + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            ManagerArchivo.escribirLog("[" + new Date() + "] ERROR AL CARGAR ESTILO DE VENTANAS ->" + ex.getMessage());
         }
     }
 

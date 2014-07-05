@@ -1,21 +1,24 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * ESTE PROYECTO ES DESARROLLADO POR GUSTAVO VARGAS MIRANDA- MARCO AURELIO BARBA HENSLER
+ * Y LUIS CARLO OSINAGA SORIA, PARA LA MATERIA DE SISTEMAS DE INFORMACION 2
+ * DE LA UNIVERSIDAD AUTONOMA GABRIEL RENE MORENO EN LA FACULTAD INTEGRAL DEL CHACO
+ * LOS DERECHOS INTELECTUALES DE ESTE SISTEMAS PERTENECEN A DICHA UNIVERSIDAD
+ * Y ES DESARROLLADO CON FINES ACADEMICOS, POR LO QUE LA VENTA Y O COPIA PARCIAL O TOTAL
+ * SOLO DEBERIA REALIZARSE PARA LOS MISMOS FINES
  */
-
-package utils;
-
 /**
  *
  * @author [GVM - MABH - LCOS]
  */
+package utils;
+
 public abstract class Data {
+
     // tipos de usuario
     public static final int SECRETARIA = 0;
     public static final int ABOGADO = 1;
     public static final int ADMINISTRADOR = 2;
-    
+
     // valores usados para estados de usuarios
     public static final int ACTIVADO = 1;
     public static final int DESACTIVADO = 0;

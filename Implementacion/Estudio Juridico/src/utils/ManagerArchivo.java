@@ -1,7 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * ESTE PROYECTO ES DESARROLLADO POR GUSTAVO VARGAS MIRANDA- MARCO AURELIO BARBA HENSLER
+ * Y LUIS CARLO OSINAGA SORIA, PARA LA MATERIA DE SISTEMAS DE INFORMACION 2
+ * DE LA UNIVERSIDAD AUTONOMA GABRIEL RENE MORENO EN LA FACULTAD INTEGRAL DEL CHACO
+ * LOS DERECHOS INTELECTUALES DE ESTE SISTEMAS PERTENECEN A DICHA UNIVERSIDAD
+ * Y ES DESARROLLADO CON FINES ACADEMICOS, POR LO QUE LA VENTA Y O COPIA PARCIAL O TOTAL
+ * SOLO DEBERIA REALIZARSE PARA LOS MISMOS FINES
+ */
+/**
+ *
+ * @author [GVM - MABH - LCOS]
  */
 package utils;
 
@@ -24,10 +31,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author [GVM - MABH - LCOS]
- */
 public class ManagerArchivo {
 
     public ManagerArchivo() {
@@ -106,7 +109,7 @@ public class ManagerArchivo {
                 }
                 k++;
             }
-            try {                
+            try {
                 if (map.containsKey(etiqueta.toString().toLowerCase())) {
                     escribirLog("[" + new Date() + "] ADVERTENCIA: El sistema se inicio con la etiqueta \"" + etiqueta + "\" duplicada: Revise ");
                 } else {
