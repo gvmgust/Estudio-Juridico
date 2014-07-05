@@ -39,6 +39,12 @@ FOREIGN KEY (`ci`)
 REFERENCES `persona` (`ci`) 
 ON DELETE CASCADE ON UPDATE CASCADE ; 
 
+ALTER TABLE `estudio_juridico`.`persona` 
+ADD CONSTRAINT `FK_persona_titulo` 
+FOREIGN KEY (`id_tit`) 
+REFERENCES `titulo` (`id_tit`)
+ON DELETE CASCADE ON UPDATE CASCADE ; 
+
 ALTER TABLE `estudio_juridico`.`titulo` 
 CHANGE `id_tit` `id_tit` INT(6) NOT NULL AUTO_INCREMENT; 
 
