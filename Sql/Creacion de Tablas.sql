@@ -1,10 +1,45 @@
-CREATE DATABASE `db_estudio_juridico`; 
+CREATE DATABASE `Estudio_Juridico`; 
+CREATE TABLE `estudio_juridico`.`titulo`( 
+	`id_tit` INT(6) NOT NULL , 
+	`titulo` VARCHAR(30) NOT NULL , 
+	`abreviatura` VARCHAR(15) NOT NULL , 
+PRIMARY KEY (`id_tit`) );
 
-CREATE TABLE `usuario`( 
-	`id_user` INT(2) NOT NULL AUTO_INCREMENT , 
-	`user` VARCHAR(16) , 
+CREATE TABLE `estudio_juridico`.`telefono`( 
+	`ci` VARCHAR(10) NOT NULL , 
+	`numero` VARCHAR(20) NOT NULL , 
+PRIMARY KEY (`ci`) ); 
+
+CREATE TABLE `estudio_juridico`.`usuario`( 
+	`id_usu` INT(6) NOT NULL , 
+	`user` VARCHAR(10) , 
 	`pass` VARCHAR(40) , 
-PRIMARY KEY (`id_user`)); 
+	`activo` INT(1) , 
+	`ci` VARCHAR(10) NOT NULL ,
+PRIMARY KEY (`id_usu`) ); 
 
--- creacion del usuario admin con password cifrada en sha1 password
-INSERT INTO `db_estudio_juridico`.`usuario`(`id_user`,`user`,`pass`) VALUES ( '1','admin','5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8'); 
+CREATE TABLE `estudio_juridico`.`persona`( 
+	`ci` VARCHAR(10) NOT NULL , 
+	`nombre` VARCHAR(30) , 
+	`apellido_parterno` VARCHAR(30) , 
+	`apellido_materno` VARCHAR(30) , 
+	`direccion` VARCHAR(100) , 
+	`id_tit` INT(6) NOT NULL , 
+PRIMARY KEY (`ci`) ); 
+
+ALTER TABLE `estudio_juridico`.`usuario` 
+ADD CONSTRAINT `FK_usuario_persona` 
+FOREIGN KEY (`ci`) 
+REFERENCES `persona` (`ci`) 
+ON DELETE CASCADE ON UPDATE CASCADE ; 
+
+ALTER TABLE `estudio_juridico`.`telefono` 
+ADD CONSTRAINT `FK_telefono_persona` 
+FOREIGN KEY (`ci`) 
+REFERENCES `persona` (`ci`) 
+ON DELETE CASCADE ON UPDATE CASCADE ; 
+
+ALTER TABLE `estudio_juridico`.`persona` 
+ADD CONSTRAINT `FK_persona_titulo` 
+FOREIGN KEY (`id_tit`) 
+REFERENCES `titulo` (`id_tit`);
