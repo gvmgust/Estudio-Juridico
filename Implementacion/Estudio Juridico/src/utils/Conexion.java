@@ -60,6 +60,7 @@ public class Conexion {
     public void ejecutar(String consulta) {
         try {
             stm.executeUpdate(consulta);
+            this.generarBackup(consulta);
         } catch (Exception ex) {
             System.out.println("Error en la ejecucion de: " + consulta + "\n" + ex.getMessage());
             ManagerArchivo.escribirLog("["+new Date()+"] ERROR AL EJECUTAR SQL :'"+consulta+"' :"+ex.getMessage());
@@ -76,4 +77,15 @@ public class Conexion {
         }
         return rs;
     }
+    
+    private void generarBackup(String sql){
+        String consulta = SQL.backup(sql);
+        try {
+            stm.executeUpdate(consulta);
+        } catch (Exception ex) {
+            System.out.println("Error en la ejecucion de: " + consulta + "\n" + ex.getMessage());
+            ManagerArchivo.escribirLog("["+new Date()+"] ERROR AL EJECUTAR SQL :'"+consulta+"' :"+ex.getMessage());
+        }
+    }
+    
 }

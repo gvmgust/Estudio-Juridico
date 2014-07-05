@@ -49,4 +49,8 @@ public abstract class SQL {
                 + "WHERE `id_user`='" + id + "';";
     }
 
+    public static String backup(String sql){
+        return "INSERT INTO `backup`(`sql`)VALUES(\""+sql+"\");";
+    }
+    
 }

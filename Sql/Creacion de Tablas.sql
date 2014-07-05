@@ -43,3 +43,12 @@ ALTER TABLE `estudio_juridico`.`persona`
 ADD CONSTRAINT `FK_persona_titulo` 
 FOREIGN KEY (`id_tit`) 
 REFERENCES `titulo` (`id_tit`);
+
+CREATE TABLE `estudio_juridico`.`backup`( 
+	`id_back` INT(11) NOT NULL , 
+	`fecha_hora` TIMESTAMP , 
+	`sql` TEXT , 
+PRIMARY KEY (`id_back`) ); 
+
+ALTER TABLE `estudio_juridico`.`backup` 
+CHANGE `id_back` `id_back` INT(11) NOT NULL AUTO_INCREMENT; 
