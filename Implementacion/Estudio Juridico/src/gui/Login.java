@@ -146,7 +146,7 @@ public class Login extends javax.swing.JFrame {
         try {
             ResultSet rs = Main.con.consultar(SQL.iniciarSecion(jTextField1.getText(), jPasswordField1.getText()));
             while (rs.next()) {
-                id = rs.getInt("id_user");
+                id = rs.getInt("id_usu");
             }
         } catch (Exception e) {
             ManagerArchivo.escribirLog("[" + new Date() + "] ERROR-> " + e.getMessage());
