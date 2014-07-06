@@ -15,6 +15,7 @@ package utils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,7 +44,9 @@ public abstract class SQL {
         return hash;
     }
 
-    public static final SimpleDateFormat formatoDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final SimpleDateFormat formatoDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    
+    public static final SimpleDateFormat formatDates = new SimpleDateFormat("yyyy-MM-dd");
 
     ////////////////////////////REGISTRO DE DATOS/////////////////////////////
     public static String registrarPersona(String ci, String nombre, String app, String apm, String dir, int tipo) {
@@ -87,6 +90,19 @@ public abstract class SQL {
 
     public static String backup(String sql) {
         return "INSERT INTO `backup`(`sql`)VALUES(\"" + sql + "\");";
+    }
+
+    public static String registrarCargo(String nombre) {
+        return "INSERT INTO `cargo` (`nombre`)VALUES('" + nombre + "');";
+    }
+
+    public static String registrarOcupa(int id_car, String ci, Date inic_gest, Date fin_gest, String observacion) {
+        return "INSERT INTO `ocupa` (id_car,ci,inic_gest,fin_gest,observacion)VALUES('"
+                + id_car + "','"
+                + ci + "','"
+                + inic_gest + "','"
+                + fin_gest + "','"
+                + observacion + "');";
     }
 
     //////////////////////////CONSULTA DE DATOS////////////////////////////////
