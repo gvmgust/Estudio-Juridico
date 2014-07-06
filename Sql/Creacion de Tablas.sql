@@ -62,3 +62,28 @@ CHANGE `id_back` `id_back` INT(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `estudio_juridico`.`usuario` 
 CHANGE `id_usu` `id_usu` INT(6) NOT NULL AUTO_INCREMENT; 
+
+CREATE TABLE `estudio_juridico`.`cargo`( 
+	`id_car` INT(6) NOT NULL AUTO_INCREMENT , 
+	`nombre` VARCHAR(20) NOT NULL , 
+PRIMARY KEY (`id_car`) ); 
+
+CREATE TABLE `estudio_juridico`.`ocupa`( 
+	`id_car` INT(6) NOT NULL , 
+	`ci` VARCHAR(10) NOT NULL , 
+	`rep` INT(3) NOT NULL AUTO_INCREMENT UNIQUE , 
+	`inic_gest` DATE , 
+	`fin_gest` DATE ,
+	`observacion` TEXT , 
+PRIMARY KEY (`id_car`, `ci`, `rep`) ); 
+
+ALTER TABLE `estudio_juridico`.`ocupa` 
+ADD CONSTRAINT `FK_ocupa_persona` 
+FOREIGN KEY (`ci`) 
+REFERENCES `persona` (`ci`); 
+
+ALTER TABLE `estudio_juridico`.`ocupa` 
+ADD CONSTRAINT `FK_ocupa_cargo` 
+FOREIGN KEY (`id_car`) 
+REFERENCES `cargo` (`id_car`); 
+
