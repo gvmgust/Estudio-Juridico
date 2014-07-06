@@ -87,3 +87,5 @@ ADD CONSTRAINT `FK_ocupa_cargo`
 FOREIGN KEY (`id_car`) 
 REFERENCES `cargo` (`id_car`); 
 
+ALTER TABLE `estudio_juridico`.`usuario` 
+ADD COLUMN `tipo` INT(1) NULL AFTER `ci`; 
