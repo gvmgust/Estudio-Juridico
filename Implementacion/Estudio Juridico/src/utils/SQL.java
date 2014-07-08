@@ -142,4 +142,12 @@ public abstract class SQL {
                 + "ON `persona`.`ci` = `usuario`.`ci` AND `persona`.`id_tit` = `titulo`.`id_tit`"
                 + "WHERE `id_usu`='" + id + "';";
     }
+
+    public static String listarArancel(String nombre) {
+        return "SELECT * FROM `arancel` WHERE `nombre` LIKE'%" + nombre + "%';";
+    }
+    
+    public static String listarArancel(int flag){
+        return "SELECT * FROM `arancel` WHERE `flag` = '"+flag+"';";
+    }
 }
