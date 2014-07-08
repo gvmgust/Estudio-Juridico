@@ -14,8 +14,10 @@ package pack;
 
 import com.birosoft.liquid.LiquidLookAndFeel;
 import data.Usuario;
+import domains.ManagerPersona;
 import gui.GuiAbogado;
 import gui.GuiAdmin;
+import gui.GuiGestionarPersona;
 import gui.GuiSecretaria;
 import gui.Login;
 import java.sql.ResultSet;
@@ -30,7 +32,8 @@ public class Main {
     public static void main(String[] args) {
         style();
         con = Conexion.getInstance();
-        login = new Login();
+        //login = new Login();
+        GuiGestionarPersona gp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona("8871254"));
     }
 
     public static void style() {

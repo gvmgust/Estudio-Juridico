@@ -18,6 +18,7 @@ public class Telefono {
 
     public Telefono(String ci) {
         this.ci = ci;
+        telf = new ArrayList();
     }
 
     public String getCi() {

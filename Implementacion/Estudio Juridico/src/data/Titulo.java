@@ -19,6 +19,13 @@ public class Titulo {
         this.titulo = titulo;
         this.abrev = abrev;
     } 
+
+    public Titulo(int id_tit, String titulo, String abrev) {
+        this.id_tit = id_tit;
+        this.titulo = titulo;
+        this.abrev = abrev;
+    }
+    
     
     public int getId_tit() {
         return id_tit;

@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public abstract class SQL {
 
@@ -48,19 +49,36 @@ public abstract class SQL {
 
     public static final SimpleDateFormat formatDates = new SimpleDateFormat("yyyy-MM-dd");
 
+    public static boolean pregunta(String pregunta) {
+        int seleccion = JOptionPane.showOptionDialog(
+                null, pregunta,
+                "Seleccione una opción", // Título
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null, // null para icono por defecto.
+                new Object[]{"Si", "No"}, // null para YES, NO y CANCEL
+                "Si");
+        if (seleccion != -1) {
+            if ((seleccion + 1) == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     ////////////////////////////REGISTRO DE DATOS/////////////////////////////
-    public static String registrarPersona(String ci, String nombre, String app, String apm, String dir, int tipo) {
-        return "INSERT INTO `persona`(`ci`,`nombre`,`apellido_parterno`,`apellido_materno`,`direccion`,`id_tit`) VALUES ('"
+    public static String registrarPersona(String ci, String nombre, String app, String apm, String dir, int id_tit) {
+        return "INSERT INTO `persona`(`ci`,`nombre`,`apellido_paterno`,`apellido_materno`,`direccion`,`id_tit`) VALUES ('"
                 + ci + "','"
                 + nombre.toUpperCase() + "','"
                 + app.toUpperCase() + "','"
                 + apm.toUpperCase() + "','"
                 + dir.toUpperCase() + "','"
-                + tipo + "');";
+                + id_tit + "');";
     }
 
     public static String registrarPersona(String ci, String nombre, String app, String apm, String dir) {
-        return "INSERT INTO `persona`(`ci`,`nombre`,`apellido_parterno`,`apellido_materno`,`direccion`) VALUES ('"
+        return "INSERT INTO `persona`(`ci`,`nombre`,`apellido_paterno`,`apellido_materno`,`direccion`) VALUES ('"
                 + ci + "','"
                 + nombre.toUpperCase() + "','"
                 + app.toUpperCase() + "','"
@@ -84,8 +102,8 @@ public abstract class SQL {
 
     public static String registrarTitulo(String titulo, String abrev) {
         return "INSERT INTO `titulo`(`titulo`,`abreviatura`) VALUES ( '"
-                + titulo + "','"
-                + abrev + "'); ";
+                + titulo.toUpperCase() + "','"
+                + abrev.toUpperCase() + "'); ";
     }
 
     public static String backup(String sql) {
@@ -131,8 +149,20 @@ public abstract class SQL {
         return "SELECT * FROM titulo WHERE id_tit = '" + id_tit + "';";
     }
 
+    public static String buscarTitulo(String abrev) {
+        return "SELECT * FROM titulo WHERE abreviatura = '" + abrev + "';";
+    }
+
     public static String buscarArancel(int id_ara) {
         return "SELECT * FROM arancel WHERE id_ara = '" + id_ara + "'";
+    }
+
+    public static String buscarPersona(String ci) {
+        return "select * from `persona` where `ci` = '" + ci + "';";
+    }
+
+    public static String buscarTelefono(String ci) {
+        return "SELECT * FROM `telefono` WHERE `ci`='" + ci + "'";
     }
 
     ///////////////////////// VISTAS DE DATOS//////////////////////////////////
@@ -156,5 +186,14 @@ public abstract class SQL {
                 + "from persona inner join ocupa inner join cargo\n"
                 + "on persona.`ci` = ocupa.`ci` and ocupa.`id_car` = cargo.`id_car`\n"
                 + "where concat(persona.`nombre`,' ',persona.`apellido_paterno`,' ',persona.`apellido_materno`) like '%" + nombre + "%" + apellido + "%';";
+    }
+
+    public static String listarTitulos() {
+        return "SELECT * FROM `titulo`;";
+    }
+
+    //////////////////////////////////Delete////////////////////////////////
+    public static String eliminarTelefono(String ci, String numero) {
+        return "DELETE FROM `estudio_juridico`.`telefono` WHERE `ci`='" + ci + "' AND `numero`='" + numero + "'; ";
     }
 }
