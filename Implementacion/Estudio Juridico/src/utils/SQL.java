@@ -45,7 +45,7 @@ public abstract class SQL {
     }
 
     public static final SimpleDateFormat formatoDateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    
+
     public static final SimpleDateFormat formatDates = new SimpleDateFormat("yyyy-MM-dd");
 
     ////////////////////////////REGISTRO DE DATOS/////////////////////////////
@@ -105,13 +105,34 @@ public abstract class SQL {
                 + observacion + "');";
     }
 
+    public static String registrarArancel(String nombre, float costo, int flag) {
+        return "INSERT INTO arancel(nombre,costo,flag)VALUES('"
+                + nombre + "','"
+                + costo + "','"
+                + flag + "');";
+    }
+
+    //////////////////////////ACTUALIZACION DE DATOS///////////////////////////
+    public static String actualizarArancel(int id_ara, String nombre, float costo, int flag) {
+        return "UPDATE arancel SET `nombre`='"
+                + nombre + "',`costo`='"
+                + costo + "',`flag`='"
+                + flag + "' "
+                + "WHERE id_ara='"
+                + id_ara + "';";
+    }
+
     //////////////////////////CONSULTA DE DATOS////////////////////////////////
     public static String iniciarSecion(String user, String pass) {
         return "SELECT id_usu FROM `usuario` WHERE `user`='" + user + "' AND `pass`='" + sha1(pass) + "'";
     }
-    
-    public static String buscarTitulo(int id_tit){
-        return "SELECT * FROM titulo WHERE id_tit = '"+id_tit+"';";
+
+    public static String buscarTitulo(int id_tit) {
+        return "SELECT * FROM titulo WHERE id_tit = '" + id_tit + "';";
+    }
+
+    public static String buscarArancel(int id_ara) {
+        return "SELECT * FROM arancel WHERE id_ara = '" + id_ara + "'";
     }
 
     ///////////////////////// VISTAS DE DATOS//////////////////////////////////
