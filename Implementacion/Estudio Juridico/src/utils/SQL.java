@@ -109,12 +109,16 @@ public abstract class SQL {
     public static String iniciarSecion(String user, String pass) {
         return "SELECT id_usu FROM `usuario` WHERE `user`='" + user + "' AND `pass`='" + sha1(pass) + "'";
     }
+    
+    public static String buscarTitulo(int id_tit){
+        return "SELECT * FROM titulo WHERE id_tit = '"+id_tit+"';";
+    }
 
     ///////////////////////// VISTAS DE DATOS//////////////////////////////////
     public static String mostrarDatosUsuario(int id) {
-        return "SELECT `titulo`.`titulo`,`persona`.*, `usuario`.`tipo`"
+        return "SELECT `titulo`.`abreviatura`,`persona`.*, `usuario`.`tipo`"
                 + "FROM `usuario` INNER JOIN `persona` INNER JOIN `titulo` "
-                + "ON `persona`.`ci` = `usuario`.`ci` AND `persona`.`id_titulo` = `titulo`.`id_titulo`"
-                + "WHERE `id_user`='" + id + "';";
+                + "ON `persona`.`ci` = `usuario`.`ci` AND `persona`.`id_tit` = `titulo`.`id_tit`"
+                + "WHERE `id_usu`='" + id + "';";
     }
 }

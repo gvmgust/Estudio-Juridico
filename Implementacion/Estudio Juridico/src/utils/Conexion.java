@@ -72,6 +72,7 @@ public class Conexion {
         } catch (Exception ex) {
             System.out.println("Error en la ejecucion de: " + consulta + "\n" + ex.getMessage());
             ManagerArchivo.escribirLog("[" + new Date() + "] ERROR AL EJECUTAR SQL :'" + consulta + "' :" + ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
@@ -82,6 +83,7 @@ public class Conexion {
         } catch (Exception ex) {
             System.out.println("Error realizar la Consutla: \n" + consulta + "\n" + ex.getMessage());
             ManagerArchivo.escribirLog("[" + new Date() + "] ERROR AL EJECUTAR SQL :'" + consulta + "' :" + ex.getMessage());
+            ex.printStackTrace();
         }
         return rs;
     }

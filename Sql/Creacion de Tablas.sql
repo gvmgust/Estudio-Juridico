@@ -89,3 +89,7 @@ REFERENCES `cargo` (`id_car`);
 
 ALTER TABLE `estudio_juridico`.`usuario` 
 ADD COLUMN `tipo` INT(1) NULL AFTER `ci`; 
+
+ALTER TABLE `estudio_juridico`.`telefono` CHANGE `numero` `numero` VARCHAR(20) 
+CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL, 
+DROP PRIMARY KEY, ADD PRIMARY KEY(`ci`, `numero`); 

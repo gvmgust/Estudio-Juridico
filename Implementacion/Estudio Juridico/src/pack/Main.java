@@ -13,6 +13,7 @@
 package pack;
 
 import com.birosoft.liquid.LiquidLookAndFeel;
+import data.Usuario;
 import gui.GuiAbogado;
 import gui.GuiAdmin;
 import gui.GuiSecretaria;
@@ -21,7 +22,6 @@ import java.sql.ResultSet;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import utils.Conexion;
-import utils.Data;
 import utils.ManagerArchivo;
 import utils.SQL;
 
@@ -53,7 +53,7 @@ public class Main {
         int tipo = 0;
         try {
             while (rs.next()) {
-                titulo = rs.getString("titulo");
+                titulo = rs.getString("abreviatura");
                 ci = rs.getString("ci");
                 nombre = rs.getString("nombre");
                 apellidoP = rs.getString("apellido_paterno");
@@ -66,15 +66,15 @@ public class Main {
         ManagerArchivo.escribirLog("[" + new Date() + "] " + nombre + " " + apellidoP + " " + apellidoM + " Inicia sesión");
         login.dispose();
         switch (tipo) {
-            case Data.SECRETARIA: {
+            case Usuario.SECRETARIA: {
                 new GuiSecretaria();
             }
             break;
-            case Data.ABOGADO: {
+            case Usuario.ABOGADO: {
                 new GuiAbogado();
             }
             break;
-            case Data.ADMINISTRADOR: {
+            case Usuario.ADMINISTRADOR: {
                 new GuiAdmin();
             }
             break;
@@ -83,7 +83,6 @@ public class Main {
                 System.exit(-1);
             }
         }
-        System.out.println(ci + " | " + titulo + " | " + nombre + " | " + apellidoP + " | " + apellidoM);
     }
 
     public static String db;
