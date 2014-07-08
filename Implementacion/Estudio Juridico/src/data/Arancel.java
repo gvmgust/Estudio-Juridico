@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package data;
 
 /**
@@ -11,6 +10,7 @@ package data;
  * @author Gustavo Vargas M
  */
 public class Arancel {
+
     private int ara;
     private String nombre;
     private float costo;
@@ -21,6 +21,10 @@ public class Arancel {
         this.nombre = nombre;
         this.costo = costo;
         this.flag = flag;
+    }
+
+    public Arancel() {
+        //constructor vacio
     }
 
     public int getAra() {
@@ -54,6 +58,5 @@ public class Arancel {
     public void setFlag(int flag) {
         this.flag = flag;
     }
-    
-    
+
 }
