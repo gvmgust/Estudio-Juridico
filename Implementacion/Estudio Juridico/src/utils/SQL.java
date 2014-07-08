@@ -140,6 +140,16 @@ public abstract class SQL {
                 + id_ara + "';";
     }
 
+    public static String actualizarPersona(String ci, String nombre, String app, String apm, String dir, int id_tit) {
+        return "UPDATE `persona` \n"
+                + "SET `nombre`='" + nombre + "',\n"
+                + "`apellido_paterno`='" + app + "',\n"
+                + "`apellido_materno`='" + apm + "',\n"
+                + "`direccion`='" + dir + "',\n"
+                + "`id_tit`='" + id_tit + "' \n"
+                + "WHERE `ci`='" + ci + "'; ";
+    }
+
     //////////////////////////CONSULTA DE DATOS////////////////////////////////
     public static String iniciarSecion(String user, String pass) {
         return "SELECT id_usu FROM `usuario` WHERE `user`='" + user + "' AND `pass`='" + sha1(pass) + "'";

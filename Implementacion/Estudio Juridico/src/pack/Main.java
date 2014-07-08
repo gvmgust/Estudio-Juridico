@@ -32,8 +32,9 @@ public class Main {
     public static void main(String[] args) {
         style();
         con = Conexion.getInstance();
+        
         //login = new Login();
-        GuiGestionarPersona gp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona("81871254"));
+        GuiGestionarPersona gp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona("8208692"));
     }
 
     public static void style() {

@@ -57,6 +57,12 @@ public class ManagerPersona {
         }
     }
 
+    public static void actualizarPersona(Persona p) {
+        if (SQL.pregunta("Desea actualizar los datos de \"" + p.getTitulo().getAbrev() + " " + p.getNombre() + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno() + "\" En la Base de Datos")) {
+            Main.con.ejecutar(SQL.actualizarPersona(p.getCi(), p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno(), p.getDireccion(), p.getTitulo().getId_tit()));
+        }
+    }
+
     ManagerPersona(Persona p) {
         this.persona = p;
     }

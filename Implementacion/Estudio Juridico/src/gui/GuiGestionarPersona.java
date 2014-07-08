@@ -252,8 +252,14 @@ public class GuiGestionarPersona extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Persona aux = ManagerPersona.buscarPersona(jTextField1.getText());
         Persona p = new Persona(jTextField1.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText(), null, ManagerTitulo.buscarTitulo(jComboBox1.getSelectedItem().toString()));
-        ManagerPersona.insertarPersona(p);
+        if (aux == null) {
+            ManagerPersona.insertarPersona(p);
+        }else{
+            ManagerPersona.actualizarPersona(p);
+        }
+            
         myInstance = getInstance(ManagerPersona.buscarPersona(p.getCi()));
     }//GEN-LAST:event_jButton3ActionPerformed
 
