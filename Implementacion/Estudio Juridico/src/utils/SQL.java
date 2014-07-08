@@ -146,8 +146,15 @@ public abstract class SQL {
     public static String listarArancel(String nombre) {
         return "SELECT * FROM `arancel` WHERE `nombre` LIKE'%" + nombre + "%';";
     }
-    
-    public static String listarArancel(int flag){
-        return "SELECT * FROM `arancel` WHERE `flag` = '"+flag+"';";
+
+    public static String listarArancel(int flag) {
+        return "SELECT * FROM `arancel` WHERE `flag` = '" + flag + "';";
+    }
+
+    public static String buscarAutoridad(String nombre, String apellido) {
+        return "SELECT persona.*,cargo.*,ocupa.*\n"
+                + "from persona inner join ocupa inner join cargo\n"
+                + "on persona.`ci` = ocupa.`ci` and ocupa.`id_car` = cargo.`id_car`\n"
+                + "where concat(persona.`nombre`,' ',persona.`apellido_paterno`,' ',persona.`apellido_materno`) like '%" + nombre + "%" + apellido + "%';";
     }
 }
