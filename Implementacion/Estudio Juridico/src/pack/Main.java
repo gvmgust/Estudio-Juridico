@@ -33,7 +33,7 @@ public class Main {
         style();
         con = Conexion.getInstance();
         //login = new Login();
-        GuiGestionarPersona gp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona("8871254"));
+        GuiGestionarPersona gp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona("81871254"));
     }
 
     public static void style() {
