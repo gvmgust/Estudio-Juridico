@@ -6,7 +6,6 @@
 
 package domains;
 
-import data.Arancel;
 import data.Autoridad;
 import data.Cargo;
 import data.Persona;
