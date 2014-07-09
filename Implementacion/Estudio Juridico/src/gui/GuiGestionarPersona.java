@@ -13,19 +13,19 @@ import domains.ManagerTelefono;
 import domains.ManagerTitulo;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import utils.SQL;
+import pack.Main;
 
 /**
  *
  * @author Gustavo Vargas M
  */
-public class GuiGestionarPersona extends javax.swing.JFrame {
+public class GuiGestionarPersona extends javax.swing.JDialog{
 
     /**
      * Creates new form GuiRegistrarPersona
      */
     private GuiGestionarPersona() {
-        super();
+        super(Main.guiPrincipal,false);
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
