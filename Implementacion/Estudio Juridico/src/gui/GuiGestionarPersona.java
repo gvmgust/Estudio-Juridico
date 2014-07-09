@@ -25,7 +25,7 @@ public class GuiGestionarPersona extends javax.swing.JDialog{
      * Creates new form GuiRegistrarPersona
      */
     private GuiGestionarPersona() {
-        super(Main.guiPrincipal,false);
+        super(Main.frame);
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);

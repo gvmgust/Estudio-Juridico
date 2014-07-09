@@ -20,6 +20,7 @@ import gui.GuiAdmin;
 import gui.GuiGestionarPersona;
 import gui.GuiSecretaria;
 import gui.Login;
+import java.awt.Frame;
 import java.sql.ResultSet;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -33,8 +34,8 @@ public class Main {
         style();
         con = Conexion.getInstance();
         
-        //login = new Login();
-        GuiGestionarPersona gp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona("8208692"));
+        frame = login = new Login();
+        //GuiGestionarPersona gp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona("8208692"));
     }
 
     public static void style() {
@@ -71,15 +72,15 @@ public class Main {
         login.dispose();
         switch (tipo) {
             case Usuario.SECRETARIA: {
-                new GuiSecretaria();
+                frame = new GuiSecretaria();
             }
             break;
             case Usuario.ABOGADO: {
-                new GuiAbogado();
+                frame = new GuiAbogado();
             }
             break;
             case Usuario.ADMINISTRADOR: {
-                new GuiAdmin();
+                frame = new GuiAdmin();
             }
             break;
             default: {
@@ -96,4 +97,5 @@ public class Main {
     public static ManagerArchivo managerArchivo = new ManagerArchivo();
     public static Conexion con;
     public static Login login;
+    public static Frame frame;
 }
