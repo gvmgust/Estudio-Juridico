@@ -8,9 +8,12 @@ package domains;
 import data.Persona;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import pack.Main;
+import utils.ManagerArchivo;
 import utils.SQL;
 
 /**
@@ -18,9 +21,9 @@ import utils.SQL;
  * @author Gustavo Vargas M
  */
 public class ManagerPersona {
-
+    
     private Persona persona;
-
+    
     ManagerPersona(String ci) {
         ResultSet rs = Main.con.consultar(SQL.buscarPersona(ci));
         try {
@@ -31,7 +34,25 @@ public class ManagerPersona {
             Logger.getLogger(ManagerPersona.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    public static ArrayList<Persona> listarPersonas(String palabra, boolean f) {
+        ArrayList<Persona> p = new ArrayList();
+        ResultSet rs;
+        if (f) {
+            rs = Main.con.consultar(SQL.listarPersonaCi(palabra));
+        } else {
+            rs = Main.con.consultar(SQL.listarPersonaNombre(palabra));
+        }
+        try {
+            while (rs.next()) {
+                p.add(new Persona(rs.getString("ci"), rs.getString("nombre"), rs.getString("apellido_paterno"), rs.getString("apellido_materno")));
+            }
+        } catch (SQLException ex) {
+            ManagerArchivo.escribirLog("[" + new Date() + "] ERROR AL LISTAR PERSONAS: " + ex.getMessage());
+        }        
+        return p;
+    }
+    
     public static Persona buscarPersona(String ci) {
         Persona persona = null;
         int id_tit = 0;
@@ -50,34 +71,34 @@ public class ManagerPersona {
         }
         return persona;
     }
-
+    
     public static void insertarPersona(Persona p) {
         if (SQL.pregunta("Desea registrar a \"" + p.getTitulo().getAbrev() + " " + p.getNombre() + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno() + "\" En la Base de Datos")) {
             Main.con.ejecutar(SQL.registrarPersona(p.getCi(), p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno(), p.getDireccion(), p.getTitulo().getId_tit()));
         }
     }
-
+    
     public static void actualizarPersona(Persona p) {
         if (SQL.pregunta("Desea actualizar los datos de \"" + p.getTitulo().getAbrev() + " " + p.getNombre() + " " + p.getApellidoPaterno() + " " + p.getApellidoMaterno() + "\" En la Base de Datos")) {
             Main.con.ejecutar(SQL.actualizarPersona(p.getCi(), p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno(), p.getDireccion(), p.getTitulo().getId_tit()));
         }
     }
-
+    
     ManagerPersona(Persona p) {
         this.persona = p;
     }
-
+    
     public static String[] parseVector(Persona p) {
-        String[] r = {p.getCi(), p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno(), p.getDireccion()};
+        String[] r = {p.getCi(), p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno()};
         return r;
     }
-
+    
     public Persona getPersona() {
         return persona;
     }
-
+    
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
-
+    
 }

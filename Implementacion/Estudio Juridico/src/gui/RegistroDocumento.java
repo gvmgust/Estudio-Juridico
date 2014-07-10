@@ -5,11 +5,11 @@
  */
 package gui;
 
+import data.Persona;
 import domains.ManagerPersona;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.prefs.Preferences;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import pack.Main;
@@ -176,9 +176,14 @@ public class RegistroDocumento extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GuiGestionarPersona ggp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona(JOptionPane.showInputDialog("Indique el Numero de Carnet")));
+        GuiGestionarPersona ggp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona(JOptionPane.showInputDialog("Indique el Numero de Carnet")),0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void actualizarNombrePersona(){
+        jLabel2.setText(persona.getTitulo().getAbrev()+" "+persona.getNombre()+" "+persona.getApellidoPaterno()+" "+persona.getApellidoMaterno());
+    }
+    
+    public Persona persona;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

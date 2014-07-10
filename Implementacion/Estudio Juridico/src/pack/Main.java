@@ -35,7 +35,7 @@ public class Main {
         con = Conexion.getInstance();
         
         // frame = login = new Login();
-        new RegistroDocumento();
+        registroDocumento = new RegistroDocumento();
     }
 
     public static void style() {
@@ -100,4 +100,8 @@ public class Main {
     public static Conexion con;
     public static Login login;
     public static Frame frame;
+    public static RegistroDocumento registroDocumento;
+    
+    // tabla de valores
+    public static int REGISTRODOCUMENTO = 0;
 }

@@ -29,6 +29,13 @@ public class Persona {
         this.titulo = titulo;
     }
 
+    public Persona(String ci, String nombre, String apellidoPaterno, String apellidoMaterno) {
+        this.ci = ci;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+    }
+    
     public String getCi() {
         return ci;
     }

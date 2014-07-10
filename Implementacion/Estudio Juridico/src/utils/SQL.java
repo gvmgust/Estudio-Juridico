@@ -202,12 +202,20 @@ public abstract class SQL {
         return "SELECT * FROM `titulo`;";
     }
 
+    public static String listarPersonaCi(String ci) {
+        return "SELECT * FROM persona WHERE ci LIKE '%" + ci + "%';";
+    }
+
+    public static String listarPersonaNombre(String nombre) {
+        return "SELECT * FROM persona WHERE CONCAT(persona.`nombre`,' ',persona.`apellido_paterno`,' ',persona.`apellido_materno`) LIKE '%" + nombre + "%';";
+    }
+
     //////////////////////////////////Delete////////////////////////////////
     public static String eliminarTelefono(String ci, String numero) {
         return "DELETE FROM `telefono` WHERE `ci`='" + ci + "' AND `numero`='" + numero + "'; ";
     }
-    
-    public static String eliminarArancel(int id){
-        return "DELETE FROM `arancel` WHERE `id_ara`='"+id+"'";
+
+    public static String eliminarArancel(int id) {
+        return "DELETE FROM `arancel` WHERE `id_ara`='" + id + "'";
     }
 }
