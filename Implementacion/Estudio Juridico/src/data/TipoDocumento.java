@@ -19,6 +19,10 @@ public class TipoDocumento {
         this.nombre = nombre;
     }
 
+    public TipoDocumento(String nombre) {
+        this.nombre = nombre;
+    }
+
     public int getId_tip() {
         return id_tip;
     }

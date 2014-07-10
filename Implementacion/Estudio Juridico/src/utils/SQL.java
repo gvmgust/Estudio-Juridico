@@ -130,6 +130,10 @@ public abstract class SQL {
                 + flag + "');";
     }
 
+    public static String registrarTipoDocumento(String tipo) {
+        return "INSERT INTO `tipo_Documento`(`tipo`)VALUES('" + tipo + "');";
+    }
+
     //////////////////////////ACTUALIZACION DE DATOS///////////////////////////
     public static String actualizarArancel(int id_ara, String nombre, float costo, int flag) {
         return "UPDATE arancel SET `nombre`='"
@@ -150,6 +154,10 @@ public abstract class SQL {
                 + "WHERE `ci`='" + ci + "'; ";
     }
 
+    public static String actualizarTipoDocumento(int id_tip, String tipo){
+        return "UPDATE `estudio_juridico`.`tipo_documento` SET `tipo`='"+tipo+"' WHERE `id_tip`='"+id_tip+"';";
+    }
+    
     //////////////////////////CONSULTA DE DATOS////////////////////////////////
     public static String iniciarSecion(String user, String pass) {
         return "SELECT id_usu FROM `usuario` WHERE `user`='" + user + "' AND `pass`='" + sha1(pass) + "'";
@@ -173,6 +181,10 @@ public abstract class SQL {
 
     public static String buscarTelefono(String ci) {
         return "SELECT * FROM `telefono` WHERE `ci`='" + ci + "'";
+    }
+
+    public static String buscarTipoDocumento(String nombre) {
+        return "SELECT * FROM `tipo_documento` WHERE `tipo` = '" + nombre + "';";
     }
 
     ///////////////////////// VISTAS DE DATOS//////////////////////////////////
@@ -208,6 +220,10 @@ public abstract class SQL {
 
     public static String listarPersonaNombre(String nombre) {
         return "SELECT * FROM persona WHERE CONCAT(persona.`nombre`,' ',persona.`apellido_paterno`,' ',persona.`apellido_materno`) LIKE '%" + nombre + "%';";
+    }
+
+    public static String listarTipoDocumento() {
+        return "SELECT * FROM tipo_documento";
     }
 
     //////////////////////////////////Delete////////////////////////////////

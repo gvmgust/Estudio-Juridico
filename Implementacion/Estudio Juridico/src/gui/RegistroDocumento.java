@@ -6,8 +6,11 @@
 package gui;
 
 import data.Persona;
+import data.TipoDocumento;
 import domains.ManagerPersona;
+import domains.ManagerTipoDocumento;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -29,6 +32,7 @@ public class RegistroDocumento extends javax.swing.JDialog {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setTitle("Registrando Documento");
+        this.cargarTipoDocumento();
     }
 
     /**
@@ -51,6 +55,7 @@ public class RegistroDocumento extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         jLabel3.setText("jLabel3");
 
@@ -73,7 +78,7 @@ public class RegistroDocumento extends javax.swing.JDialog {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Documento Personal", "Memorial", "Notificacion", "Citacion" }));
 
-        jButton2.setText("Registrar Nuevo Tipo de Documento:");
+        jButton2.setText("Agregar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -90,6 +95,13 @@ public class RegistroDocumento extends javax.swing.JDialog {
         jButton4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jButton4.setText("Cargar y Guardar");
 
+        jButton5.setText("Modificar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,18 +114,23 @@ public class RegistroDocumento extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addComponent(jButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jComboBox1, 0, 182, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1)
+                            .addComponent(jButton4))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,11 +145,11 @@ public class RegistroDocumento extends javax.swing.JDialog {
                     .addComponent(jButton3)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addContainerGap())
@@ -159,7 +176,12 @@ public class RegistroDocumento extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new RegistroDocumentoNuevo();
+        String tipo = JOptionPane.showInputDialog(null, "Indique el Nombre del nuevo Tipo de Doumento", "Ingresar Valor", JOptionPane.QUESTION_MESSAGE);
+        tipoDocumento = ManagerTipoDocumento.getDocumento(tipo);
+        if (tipoDocumento == null) {
+            ManagerTipoDocumento.registrarTipoDocumento(new TipoDocumento(tipo));
+        }
+        cargarTipoDocumento();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -177,20 +199,41 @@ public class RegistroDocumento extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Persona p = ManagerPersona.buscarPersona(JOptionPane.showInputDialog("Indique el Numero de Carnet"));
-        GuiGestionarPersona ggp = GuiGestionarPersona.getInstance(p,0);
+        GuiGestionarPersona ggp = GuiGestionarPersona.getInstance(p, Main.REGISTRODOCUMENTO);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void actualizarNombrePersona(){
-        jLabel2.setText(persona.getTitulo().getAbrev()+" "+persona.getNombre()+" "+persona.getApellidoPaterno()+" "+persona.getApellidoMaterno());
-    }
-    
-    public Persona persona;
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        TipoDocumento td = listaTipoDocumento.get(jComboBox1.getSelectedIndex());
+        String newNombre = JOptionPane.showInputDialog(null, "Indique eln nuevo nombre", "Ingresar valor", JOptionPane.QUESTION_MESSAGE);
+        td.setNombre(newNombre);
+        if (ManagerTipoDocumento.actualizarTipoDocumento(td)) {
+            cargarTipoDocumento();
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
+    public void actualizarNombrePersona() {
+        if (persona != null) {
+            jLabel2.setText(persona.getTitulo().getAbrev() + " " + persona.getNombre() + " " + persona.getApellidoPaterno() + " " + persona.getApellidoMaterno());
+        }
+    }
+
+    public void cargarTipoDocumento() {
+        listaTipoDocumento = ManagerTipoDocumento.listar();
+        jComboBox1.removeAllItems();
+        for (int i = 0; i < listaTipoDocumento.size(); i++) {
+            jComboBox1.addItem(listaTipoDocumento.get(i).getNombre());
+        }
+    }
+
+    public Persona persona;
+    public TipoDocumento tipoDocumento;
+    private ArrayList<TipoDocumento> listaTipoDocumento;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
