@@ -24,6 +24,13 @@ public class Documento {
         this.ubicacion = ubicacion;
         this.ubicacionFisica = ubicacionFisica;
     }
+
+    public Documento(Persona ci, TipoDocumento tipoDocumento, String ubicacion, String ubicacionFisica) {
+        this.ci = ci;
+        this.tipoDocumento = tipoDocumento;
+        this.ubicacion = ubicacion;
+        this.ubicacionFisica = ubicacionFisica;
+    }
     
     public Persona getCi() {
         return ci;

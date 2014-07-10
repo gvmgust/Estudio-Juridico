@@ -190,7 +190,11 @@
               <Font name="Comic Sans MS" size="14" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cargar y Guardar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>

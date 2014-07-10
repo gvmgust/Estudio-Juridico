@@ -34,8 +34,8 @@ public class Main {
         style();
         con = Conexion.getInstance();
         
-        // frame = login = new Login();
-        registroDocumento = new RegistroDocumento();
+         frame = login = new Login();
+        //registroDocumento = new RegistroDocumento();
     }
 
     public static void style() {

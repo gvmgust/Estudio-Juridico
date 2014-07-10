@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package data;
 
 /**
@@ -11,6 +10,7 @@ package data;
  * @author Gustavo Vargas M
  */
 public class Persona {
+
     private String ci;
     private String nombre;
     private String apellidoPaterno;
@@ -35,7 +35,7 @@ public class Persona {
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
     }
-    
+
     public String getCi() {
         return ci;
     }
@@ -91,5 +91,8 @@ public class Persona {
     public void setTitulo(Titulo titulo) {
         this.titulo = titulo;
     }
-    
+
+    public String nombrePersona() {
+        return this.titulo.getAbrev() + " " + this.nombre + " " + this.apellidoPaterno + " " + this.apellidoMaterno;
+    }
 }

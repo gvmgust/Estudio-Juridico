@@ -133,6 +133,14 @@ public abstract class SQL {
     public static String registrarTipoDocumento(String tipo) {
         return "INSERT INTO `tipo_Documento`(`tipo`)VALUES('" + tipo + "');";
     }
+    
+    public static String registrarDocumento(String ci,int id_tip,String ubicacion,String ubicacionFisica){
+        return "INSERT INTO documento(`ci`,`id_tip`,`ubicacion`,`ubicacion_fisica`)VALUES('"
+                + ci+"','"
+                + id_tip+"','"
+                + ubicacion+"','"
+                + ubicacionFisica+"');";
+    }
 
     //////////////////////////ACTUALIZACION DE DATOS///////////////////////////
     public static String actualizarArancel(int id_ara, String nombre, float costo, int flag) {

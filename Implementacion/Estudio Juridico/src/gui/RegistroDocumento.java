@@ -5,8 +5,10 @@
  */
 package gui;
 
+import data.Documento;
 import data.Persona;
 import data.TipoDocumento;
+import domains.ManagerDocumento;
 import domains.ManagerPersona;
 import domains.ManagerTipoDocumento;
 import java.io.IOException;
@@ -94,6 +96,12 @@ public class RegistroDocumento extends javax.swing.JDialog {
 
         jButton4.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jButton4.setText("Cargar y Guardar");
+        jButton4.setEnabled(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Modificar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -182,6 +190,7 @@ public class RegistroDocumento extends javax.swing.JDialog {
             ManagerTipoDocumento.registrarTipoDocumento(new TipoDocumento(tipo));
         }
         cargarTipoDocumento();
+        jButton4.setEnabled(persona != null && tipoDocumento != null && dirArchivo != null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -190,11 +199,13 @@ public class RegistroDocumento extends javax.swing.JDialog {
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             try {
                 jLabel6.setText(fileChooser.getSelectedFile().getCanonicalPath());
+                dirArchivo = fileChooser.getSelectedFile().getCanonicalPath();
+                jButton4.setEnabled(persona != null && dirArchivo != null);
             } catch (IOException ex) {
                 Logger.getLogger(RegistroDocumento.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
+        jButton4.setEnabled(persona != null && tipoDocumento != null && dirArchivo != null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -209,12 +220,22 @@ public class RegistroDocumento extends javax.swing.JDialog {
         if (ManagerTipoDocumento.actualizarTipoDocumento(td)) {
             cargarTipoDocumento();
         }
+        jButton4.setEnabled(persona != null && dirArchivo != null);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Documento d = new Documento(persona, tipoDocumento, Main.dirDoc, JOptionPane.showInputDialog("Indique la Ubicacion Fisica del Documento"));
+        if (ManagerDocumento.insertarDocumento(d)) {
+            this.dispose();
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public void actualizarNombrePersona() {
         if (persona != null) {
             jLabel2.setText(persona.getTitulo().getAbrev() + " " + persona.getNombre() + " " + persona.getApellidoPaterno() + " " + persona.getApellidoMaterno());
         }
+        jButton4.setEnabled(persona != null && dirArchivo != null);
     }
 
     public void cargarTipoDocumento() {
@@ -228,6 +249,7 @@ public class RegistroDocumento extends javax.swing.JDialog {
     public Persona persona;
     public TipoDocumento tipoDocumento;
     private ArrayList<TipoDocumento> listaTipoDocumento;
+    private String dirArchivo = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
