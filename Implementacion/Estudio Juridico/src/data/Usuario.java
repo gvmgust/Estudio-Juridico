@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package data;
 
 /**
@@ -11,6 +10,7 @@ package data;
  * @author Gustavo Vargas M
  */
 public class Usuario {
+
     // tipos de usuario
     public static final int SECRETARIA = 0;
     public static final int ABOGADO = 1;
@@ -33,6 +33,23 @@ public class Usuario {
         this.activo = activo;
         this.persona = persona;
         this.tipo = tipo;
+    }
+
+    public Usuario(String user, String pass, int activo, Persona persona, int tipo) {
+        this.user = user;
+        this.pass = pass;
+        this.activo = activo;
+        this.persona = persona;
+        this.tipo = tipo;
+    }
+
+    public Usuario(int id_usu, String user, int activo, Persona persona, int tipo) {
+        this.id_usu = id_usu;
+        this.user = user;
+        this.activo = activo;
+        this.persona = persona;
+        this.tipo = tipo;
+        this.pass = "";
     }
 
     public int getId_usu() {
@@ -82,6 +99,5 @@ public class Usuario {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
-    
-    
+
 }

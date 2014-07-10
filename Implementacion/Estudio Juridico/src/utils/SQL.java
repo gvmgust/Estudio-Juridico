@@ -133,13 +133,22 @@ public abstract class SQL {
     public static String registrarTipoDocumento(String tipo) {
         return "INSERT INTO `tipo_Documento`(`tipo`)VALUES('" + tipo + "');";
     }
-    
-    public static String registrarDocumento(String ci,int id_tip,String ubicacion,String ubicacionFisica){
+
+    public static String registrarDocumento(String ci, int id_tip, String ubicacion, String ubicacionFisica) {
         return "INSERT INTO documento(`ci`,`id_tip`,`ubicacion`,`ubicacion_fisica`)VALUES('"
-                + ci+"','"
-                + id_tip+"','"
-                + ubicacion+"','"
-                + ubicacionFisica+"');";
+                + ci + "','"
+                + id_tip + "','"
+                + ubicacion + "','"
+                + ubicacionFisica + "');";
+    }
+
+    public static String registrarUsuario(String user, String pass, String ci, int flag, int tipo) {
+        return "INSERT INTO `usuario`(`user`,`pass`,`activo`,`ci`,`tipo`)VALUES('"
+                + user + "','"
+                + SQL.sha1(pass) + "','"
+                + flag + "','"
+                + ci + "','"
+                + tipo + "');";
     }
 
     //////////////////////////ACTUALIZACION DE DATOS///////////////////////////
@@ -162,10 +171,29 @@ public abstract class SQL {
                 + "WHERE `ci`='" + ci + "'; ";
     }
 
-    public static String actualizarTipoDocumento(int id_tip, String tipo){
-        return "UPDATE `estudio_juridico`.`tipo_documento` SET `tipo`='"+tipo+"' WHERE `id_tip`='"+id_tip+"';";
+    public static String actualizarTipoDocumento(int id_tip, String tipo) {
+        return "UPDATE `estudio_juridico`.`tipo_documento` SET `tipo`='" + tipo + "' WHERE `id_tip`='" + id_tip + "';";
     }
-    
+
+    public static String actualizarUsuario(String user, String pass, int activo, String ci, int tipo, int id_usu) {
+        return "UPDATE SET `user`='" + user
+                + "' ,`pass`='"
+                + sha1(pass) + "', `activo`='"
+                + activo + "', `ci`='"
+                + ci + "',`tipo`='"
+                + tipo + "' "
+                + "WHERE id_usu = '" + id_usu + "';";
+    }
+
+    public static String actualizarUsuario(String user, int activo, String ci, int tipo, int id_usu) {
+        return "UPDATE SET `user`='"
+                + user + "' ,`pass`='"
+                + activo + "',, `activo`='"
+                + ci + "', `ci`='"
+                + tipo + "',`tipo`='"
+                + id_usu + "' WHERE id_usu = '" + "';";
+    }
+
     //////////////////////////CONSULTA DE DATOS////////////////////////////////
     public static String iniciarSecion(String user, String pass) {
         return "SELECT id_usu FROM `usuario` WHERE `user`='" + user + "' AND `pass`='" + sha1(pass) + "'";

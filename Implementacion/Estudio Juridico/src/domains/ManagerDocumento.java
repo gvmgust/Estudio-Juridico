@@ -16,7 +16,9 @@ import utils.SQL;
  */
 public class ManagerDocumento {
     public static boolean insertarDocumento(Documento d){
-        if(SQL.pregunta("Desea insertar el documento de "+d.getTipoDocumento().getNombre()+" para la persona: \n"+d.getCi().nombrePersona())){
+        System.out.println(d.getCi());
+        if(SQL.pregunta("Desea insertar el documento de "+d.getTipoDocumento()+" para la persona: \n"+d.getCi().nombrePersona())){
+            System.out.println(SQL.registrarDocumento(d.getCi().getCi(), d.getTipoDocumento().getId_tip(), d.getUbicacion(), d.getUbicacionFisica()));
             Main.con.ejecutar(SQL.registrarDocumento(d.getCi().getCi(), d.getTipoDocumento().getId_tip(), d.getUbicacion(), d.getUbicacionFisica()));
         }
         return false;

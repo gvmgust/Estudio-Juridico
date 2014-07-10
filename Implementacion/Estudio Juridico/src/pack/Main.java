@@ -31,10 +31,10 @@ import utils.SQL;
 public class Main {
 
     public static void main(String[] args) {
-        style();
+        //style();
         con = Conexion.getInstance();
-        
-         frame = login = new Login();
+
+        frame = login = new Login();
         //registroDocumento = new RegistroDocumento();
     }
 
@@ -80,7 +80,8 @@ public class Main {
             }
             break;
             case Usuario.ADMINISTRADOR: {
-                frame = new GuiAdmin();
+                guiAdmin = new GuiAdmin();
+                frame = guiAdmin;
             }
             break;
             default: {
@@ -101,7 +102,9 @@ public class Main {
     public static Login login;
     public static Frame frame;
     public static RegistroDocumento registroDocumento;
-    
+    public static GuiAdmin guiAdmin;
+
     // tabla de valores
     public static int REGISTRODOCUMENTO = 0;
+    public static int GUIADMIN = 1;
 }

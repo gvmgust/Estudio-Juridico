@@ -330,6 +330,11 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
             Main.registroDocumento.persona = persona;
             Main.registroDocumento.actualizarNombrePersona();
         }
+        if(id_padre == Main.GUIADMIN){
+           Main.guiAdmin.persona = persona;
+           Main.guiAdmin.mostrarNombrePersona();
+           
+        }
         myInstance = null;
     }//GEN-LAST:event_formWindowClosed
 

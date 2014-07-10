@@ -35,6 +35,7 @@ public class RegistroDocumento extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.setTitle("Registrando Documento");
         this.cargarTipoDocumento();
+        Main.registroDocumento = this;
     }
 
     /**
@@ -118,19 +119,19 @@ public class RegistroDocumento extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, 182, Short.MAX_VALUE)
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -205,7 +206,7 @@ public class RegistroDocumento extends javax.swing.JDialog {
                 Logger.getLogger(RegistroDocumento.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        jButton4.setEnabled(persona != null && tipoDocumento != null && dirArchivo != null);
+        jButton4.setEnabled(persona != null && dirArchivo != null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -224,6 +225,7 @@ public class RegistroDocumento extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        tipoDocumento = listaTipoDocumento.get(jComboBox1.getSelectedIndex());
         Documento d = new Documento(persona, tipoDocumento, Main.dirDoc, JOptionPane.showInputDialog("Indique la Ubicacion Fisica del Documento"));
         if (ManagerDocumento.insertarDocumento(d)) {
             this.dispose();

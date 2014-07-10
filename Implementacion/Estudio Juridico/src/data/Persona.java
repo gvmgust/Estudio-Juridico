@@ -95,4 +95,8 @@ public class Persona {
     public String nombrePersona() {
         return this.titulo.getAbrev() + " " + this.nombre + " " + this.apellidoPaterno + " " + this.apellidoMaterno;
     }
+
+    public String toString() {
+        return titulo.getAbrev() + " " + nombre + " " + apellidoPaterno + " " + apellidoMaterno;
+    }
 }
