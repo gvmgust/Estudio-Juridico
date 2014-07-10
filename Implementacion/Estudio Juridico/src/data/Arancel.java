@@ -11,6 +11,9 @@ package data;
  */
 public class Arancel {
 
+    public static final int CITA = 0;
+    public static final int DOCUMENTO = 1;
+    public static final int CASO = 2;
     private int ara;
     private String nombre;
     private float costo;

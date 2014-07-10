@@ -21,9 +21,9 @@ import utils.SQL;
  * @author Gustavo Vargas M
  */
 public class ManagerArancel {
-    
+
     private Arancel arancel;
-    
+
     public ManagerArancel(int id_ara) {
         ResultSet rs = Main.con.consultar(SQL.buscarArancel(id_ara));
         try {
@@ -34,19 +34,19 @@ public class ManagerArancel {
             ManagerArchivo.escribirLog("[" + new Date() + "] Error al buscar Arancel: " + ex.getMessage());
         }
     }
-    
+
     public ManagerArancel(Arancel arancel) {
         this.arancel = arancel;
     }
-    
+
     public static void insertarArancel(Arancel arancel) {
         Main.con.ejecutar(SQL.registrarArancel(arancel.getNombre(), arancel.getCosto(), arancel.getFlag()));
     }
-    
+
     public static void actualizarArancel(Arancel arancel) {
         Main.con.ejecutar(SQL.actualizarArancel(arancel.getAra(), arancel.getNombre(), arancel.getCosto(), arancel.getFlag()));
     }
-    
+
     public static ArrayList<Arancel> listarArancel(String nombre) {
         ArrayList<Arancel> lista = new ArrayList<Arancel>();
         ResultSet rs = Main.con.consultar(SQL.listarArancel(nombre));
@@ -59,7 +59,7 @@ public class ManagerArancel {
         }
         return lista;
     }
-    
+
     public static ArrayList<Arancel> listarArancel(int flag) {
         ArrayList<Arancel> lista = new ArrayList<Arancel>();
         ResultSet rs = Main.con.consultar(SQL.listarArancel(flag));
@@ -70,15 +70,20 @@ public class ManagerArancel {
         } catch (SQLException ex) {
             Logger.getLogger(ManagerArancel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return lista;
     }
-    
+
+    public static String[] parseVector(Arancel a) {
+        String[] r = {a.getNombre() + "", a.getCosto() + ""};
+        return r;
+    }
+
     public Arancel getArancel() {
         return arancel;
     }
-    
+
     public void setArancel(Arancel arancel) {
         this.arancel = arancel;
-    }    
+    }
 }
