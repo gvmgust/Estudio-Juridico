@@ -67,6 +67,11 @@ public class ManagerPersona {
         this.persona = p;
     }
 
+    public static String[] parseVector(Persona p) {
+        String[] r = {p.getCi(), p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno(), p.getDireccion()};
+        return r;
+    }
+
     public Persona getPersona() {
         return persona;
     }

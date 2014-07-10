@@ -175,7 +175,7 @@ public class GuiArancel extends javax.swing.JDialog {
             Main.guiGestionarArancel.cargarDatos();
             this.dispose();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "El valor Introducido en Costo no es Valido, debe\nsolo puede ingresar valores enteros o decimales\nno literales", "ERROR EN INTRODUCCION DE DATOS", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El valor Introducido en Costo no es Valido,\nsolo puede ingresar valores enteros o decimales\nno literales", "ERROR EN INTRODUCCION DE DATOS", JOptionPane.ERROR_MESSAGE);
         }
     }
 

@@ -19,6 +19,7 @@ import gui.GuiAdmin;
 import gui.GuiGestionarArancel;
 import gui.GuiSecretaria;
 import gui.Login;
+import gui.RegistroDocumento;
 import java.awt.Frame;
 import java.sql.ResultSet;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class Main {
         con = Conexion.getInstance();
         
         // frame = login = new Login();
-        guiGestionarArancel = new GuiGestionarArancel();
+        new RegistroDocumento();
     }
 
     public static void style() {
@@ -94,6 +95,7 @@ public class Main {
     public static String host;
     public static String user;
     public static String password;
+    public static String dirDoc;
     public static ManagerArchivo managerArchivo = new ManagerArchivo();
     public static Conexion con;
     public static Login login;
