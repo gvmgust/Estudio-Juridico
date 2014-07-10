@@ -204,6 +204,10 @@ public abstract class SQL {
 
     //////////////////////////////////Delete////////////////////////////////
     public static String eliminarTelefono(String ci, String numero) {
-        return "DELETE FROM `estudio_juridico`.`telefono` WHERE `ci`='" + ci + "' AND `numero`='" + numero + "'; ";
+        return "DELETE FROM `telefono` WHERE `ci`='" + ci + "' AND `numero`='" + numero + "'; ";
+    }
+    
+    public static String eliminarArancel(int id){
+        return "DELETE FROM `arancel` WHERE `id_ara`='"+id+"'";
     }
 }

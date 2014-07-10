@@ -7,7 +7,9 @@ package gui;
 
 import data.Arancel;
 import domains.ManagerArancel;
+import java.awt.Frame;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import pack.Main;
 
@@ -40,6 +42,7 @@ public class GuiGestionarArancel extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -51,10 +54,29 @@ public class GuiGestionarArancel extends javax.swing.JDialog {
 
         jMenuItem1.setText("Modificar Arancel");
         jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(jMenuItem1);
+
+        jMenuItem3.setText("Agregar Arancel");
+        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem3);
 
         jMenuItem2.setText("Eliminar Arancel");
         jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(jMenuItem2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -133,6 +155,7 @@ public class GuiGestionarArancel extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        ejecutor = Arancel.CASO;
         int r = jTable1.rowAtPoint(evt.getPoint());
         if (r >= 0 && r < jTable1.getRowCount()) {
             jTable1.setRowSelectionInterval(r, r);
@@ -141,6 +164,7 @@ public class GuiGestionarArancel extends javax.swing.JDialog {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        ejecutor = Arancel.CITA;
         int r = jTable2.rowAtPoint(evt.getPoint());
         if (r >= 0 && r < jTable2.getRowCount()) {
             jTable2.setRowSelectionInterval(r, r);
@@ -149,12 +173,50 @@ public class GuiGestionarArancel extends javax.swing.JDialog {
     }//GEN-LAST:event_jTable2MouseClicked
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        ejecutor = Arancel.DOCUMENTO;
         int r = jTable3.rowAtPoint(evt.getPoint());
         if (r >= 0 && r < jTable3.getRowCount()) {
             jTable3.setRowSelectionInterval(r, r);
         }
         jPopupMenu1.show(evt.getComponent(), evt.getX(), evt.getY());
     }//GEN-LAST:event_jTable3MouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if (ejecutor == Arancel.CASO) {
+            Arancel a = arancel1.get(jTable1.getSelectedRow());
+            new GuiArancel(a);
+        }
+        if (ejecutor == Arancel.CITA) {
+            Arancel a = arancel2.get(jTable2.getSelectedRow());
+            new GuiArancel(a);
+        }
+        if (ejecutor == Arancel.DOCUMENTO) {
+            Arancel a = arancel3.get(jTable3.getSelectedRow());
+            new GuiArancel(a);
+        }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if (ejecutor == Arancel.CASO) {
+            if (ManagerArancel.eliminarArancel(arancel1.get(jTable1.getSelectedRow()))) {
+                this.cargarDatos();
+            }
+        }
+        if (ejecutor == Arancel.CITA) {
+            if (ManagerArancel.eliminarArancel(arancel2.get(jTable2.getSelectedRow()))) {
+                this.cargarDatos();
+            }
+        }
+        if (ejecutor == Arancel.DOCUMENTO) {
+            if (ManagerArancel.eliminarArancel(arancel3.get(jTable3.getSelectedRow()))) {
+                this.cargarDatos();
+            }
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        new GuiArancel(new Arancel(ejecutor));
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     public void cargarDatos() {
         arancel1 = ManagerArancel.listarArancel(Arancel.CASO);
@@ -210,10 +272,12 @@ public class GuiGestionarArancel extends javax.swing.JDialog {
             return false;
         }
     };
+    private int ejecutor = 0;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;

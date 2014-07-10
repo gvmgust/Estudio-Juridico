@@ -34,7 +34,7 @@ public class Main {
         con = Conexion.getInstance();
         
         // frame = login = new Login();
-        new GuiGestionarArancel();
+        guiGestionarArancel = new GuiGestionarArancel();
     }
 
     public static void style() {
@@ -89,6 +89,7 @@ public class Main {
         }
     }
 
+    public static GuiGestionarArancel guiGestionarArancel;
     public static String db;
     public static String host;
     public static String user;

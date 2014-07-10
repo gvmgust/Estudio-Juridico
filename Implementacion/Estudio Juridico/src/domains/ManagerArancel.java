@@ -40,11 +40,24 @@ public class ManagerArancel {
     }
 
     public static void insertarArancel(Arancel arancel) {
+        if (SQL.pregunta("Desea registrar el Arancel " + arancel.getNombre()+" con un costo de: "+arancel.getCosto()))
         Main.con.ejecutar(SQL.registrarArancel(arancel.getNombre(), arancel.getCosto(), arancel.getFlag()));
     }
 
-    public static void actualizarArancel(Arancel arancel) {
-        Main.con.ejecutar(SQL.actualizarArancel(arancel.getAra(), arancel.getNombre(), arancel.getCosto(), arancel.getFlag()));
+    public static boolean actualizarArancel(Arancel arancel) {
+        if (SQL.pregunta("Desea Actualizar los datos del arancel " + arancel.getNombre())) {
+            return Main.con.ejecutar(SQL.actualizarArancel(arancel.getAra(), arancel.getNombre(), arancel.getCosto(), arancel.getFlag()));
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean eliminarArancel(Arancel arancel) {
+        if (SQL.pregunta("Desea Eliminar el arancel " + arancel.getNombre())) {
+            return Main.con.ejecutar(SQL.eliminarArancel(arancel.getAra()));
+        } else {
+            return false;
+        }
     }
 
     public static ArrayList<Arancel> listarArancel(String nombre) {

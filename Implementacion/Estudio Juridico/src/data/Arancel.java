@@ -26,8 +26,18 @@ public class Arancel {
         this.flag = flag;
     }
 
-    public Arancel() {
-        //constructor vacio
+    public Arancel(String nombre, float costo, int flag) {
+        this.nombre = nombre;
+        this.costo = costo;
+        this.flag = flag;
+        ara = 0;
+    }
+
+    public Arancel(int flag) {
+        ara = 0;
+        costo = 0;
+        nombre = "";
+        this.flag = flag;
     }
 
     public int getAra() {
