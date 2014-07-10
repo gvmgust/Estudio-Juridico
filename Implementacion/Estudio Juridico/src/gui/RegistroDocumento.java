@@ -176,7 +176,8 @@ public class RegistroDocumento extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        GuiGestionarPersona ggp = GuiGestionarPersona.getInstance(ManagerPersona.buscarPersona(JOptionPane.showInputDialog("Indique el Numero de Carnet")),0);
+        Persona p = ManagerPersona.buscarPersona(JOptionPane.showInputDialog("Indique el Numero de Carnet"));
+        GuiGestionarPersona ggp = GuiGestionarPersona.getInstance(p,0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public void actualizarNombrePersona(){
