@@ -68,6 +68,7 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
         jRadioButton2 = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -165,6 +166,7 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
         });
 
         jButton5.setText("SALIR");
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -190,22 +192,21 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField6))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -270,6 +271,14 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton6.setText("Agregar Persona");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -282,10 +291,12 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRadioButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2))
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -295,7 +306,8 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioButton2)
+                    .addComponent(jButton6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
@@ -326,14 +338,18 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        if(id_padre == Main.REGISTRODOCUMENTO){
+        if (id_padre == Main.REGISTRODOCUMENTO) {
             Main.registroDocumento.persona = persona;
             Main.registroDocumento.actualizarNombrePersona();
         }
-        if(id_padre == Main.GUIADMIN){
-           Main.guiAdmin.persona = persona;
-           Main.guiAdmin.mostrarNombrePersona();
-           
+        if (id_padre == Main.GUIADMIN) {
+            Main.guiAdmin.persona = persona;
+            Main.guiAdmin.mostrarNombrePersona();
+        }
+        
+        if (id_padre == Main.GUISECRETARIA) {
+            Main.guiSecretaria.persona = persona;
+            Main.guiSecretaria.mostrarNombrePersona();
         }
         myInstance = null;
     }//GEN-LAST:event_formWindowClosed
@@ -346,8 +362,8 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
         } else {
             ManagerPersona.actualizarPersona(p);
         }
-        
-        myInstance = getInstance(ManagerPersona.buscarPersona(p.getCi()),id_padre);
+
+        myInstance = getInstance(ManagerPersona.buscarPersona(p.getCi()), id_padre);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -367,14 +383,14 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
             Telefono t = new Telefono(p.getCi());
             t.addTelf(numero);
             ManagerTelefono.registrarTelefono(t);
-            myInstance = getInstance(ManagerPersona.buscarPersona(p.getCi()),id_padre);
+            myInstance = getInstance(ManagerPersona.buscarPersona(p.getCi()), id_padre);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Persona p = ManagerPersona.buscarPersona(jTextField1.getText());
         ManagerTelefono.eliminarTelefono(p.getTelf(), jComboBox2.getSelectedIndex());
-        myInstance = getInstance(ManagerPersona.buscarPersona(p.getCi()),id_padre);
+        myInstance = getInstance(ManagerPersona.buscarPersona(p.getCi()), id_padre);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
@@ -383,9 +399,9 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int r = jTable1.rowAtPoint(evt.getPoint());
-        if (r >= 1 && r < jTable1.getRowCount()) {
+        if (r >= 0 && r < jTable1.getRowCount()) {
             Persona p = ManagerPersona.buscarPersona(listaPersona.get(jTable1.getSelectedRow()).getCi());
-            myInstance = getInstance(p,id_padre);
+            myInstance = getInstance(p, id_padre);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -393,9 +409,19 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        jTextField1.setText("");
+        jTextField6.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        myInstance = getInstance(null, id_padre);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     private static GuiGestionarPersona myInstance;
     private static int id_padre;
     private static Persona persona;
+
     public static GuiGestionarPersona getInstance(Persona p, int id) {
         id_padre = id;
         if (myInstance == null) {
@@ -412,6 +438,7 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
             myInstance.jButton1.setEnabled(false);
             myInstance.jComboBox2.setEnabled(false);
             myInstance.jButton2.setEnabled(false);
+            myInstance.jTextField1.setEditable(true);
         } else {
             myInstance.setTitle("ACTUALIZANDO PERSONA");
             myInstance.jPanel2.setEnabled(true);
@@ -425,6 +452,7 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
             myInstance.jTextField6.setText(p.getDireccion());
             myInstance.jComboBox1.setSelectedItem(p.getTitulo().getAbrev());
             myInstance.jComboBox2.removeAllItems();
+            myInstance.jTextField1.setEditable(false);
             for (int i = 0; i < p.getTelf().getTelf().size(); i++) {
                 myInstance.jComboBox2.addItem(p.getTelf().getTelf().get(i).toString());
             }
@@ -462,6 +490,7 @@ public class GuiGestionarPersona extends javax.swing.JDialog {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;

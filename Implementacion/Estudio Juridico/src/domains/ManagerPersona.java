@@ -23,18 +23,7 @@ import utils.SQL;
 public class ManagerPersona {
     
     private Persona persona;
-    
-    ManagerPersona(String ci) {
-        ResultSet rs = Main.con.consultar(SQL.buscarPersona(ci));
-        try {
-            while (rs.next()) {
-                persona = new Persona(rs.getString("ci"), rs.getString("nombre"), rs.getString("apellido_paterno"), rs.getString("apellido_materno"), rs.getString("direccion"), null, null);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ManagerPersona.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
+        
     public static ArrayList<Persona> listarPersonas(String palabra, boolean f) {
         ArrayList<Persona> p = new ArrayList();
         ResultSet rs;
@@ -49,7 +38,7 @@ public class ManagerPersona {
             }
         } catch (SQLException ex) {
             ManagerArchivo.escribirLog("[" + new Date() + "] ERROR AL LISTAR PERSONAS: " + ex.getMessage());
-        }        
+        }    
         return p;
     }
     
@@ -83,22 +72,13 @@ public class ManagerPersona {
             Main.con.ejecutar(SQL.actualizarPersona(p.getCi(), p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno(), p.getDireccion(), p.getTitulo().getId_tit()));
         }
     }
-    
-    ManagerPersona(Persona p) {
-        this.persona = p;
-    }
-    
+        
     public static String[] parseVector(Persona p) {
-        String[] r = {p.getCi(), p.getNombre(), p.getApellidoPaterno(), p.getApellidoMaterno()};
+        String[] r = {
+            p.getCi(), 
+            p.getNombre(), 
+            p.getApellidoPaterno(), 
+            p.getApellidoMaterno()};
         return r;
-    }
-    
-    public Persona getPersona() {
-        return persona;
-    }
-    
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-    
+    }        
 }

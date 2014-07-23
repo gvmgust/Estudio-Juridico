@@ -24,24 +24,10 @@ public class ManagerArancel {
 
     private Arancel arancel;
 
-    public ManagerArancel(int id_ara) {
-        ResultSet rs = Main.con.consultar(SQL.buscarArancel(id_ara));
-        try {
-            while (rs.next()) {
-                arancel = new Arancel(id_ara, rs.getString("nombre"), rs.getFloat("costo"), rs.getInt("flag"));
-            }
-        } catch (Exception ex) {
-            ManagerArchivo.escribirLog("[" + new Date() + "] Error al buscar Arancel: " + ex.getMessage());
-        }
-    }
-
-    public ManagerArancel(Arancel arancel) {
-        this.arancel = arancel;
-    }
-
     public static void insertarArancel(Arancel arancel) {
-        if (SQL.pregunta("Desea registrar el Arancel " + arancel.getNombre()+" con un costo de: "+arancel.getCosto()))
-        Main.con.ejecutar(SQL.registrarArancel(arancel.getNombre(), arancel.getCosto(), arancel.getFlag()));
+        if (SQL.pregunta("Desea registrar el Arancel " + arancel.getNombre() + " con un costo de: " + arancel.getCosto())) {
+            Main.con.ejecutar(SQL.registrarArancel(arancel.getNombre(), arancel.getCosto(), arancel.getFlag()));
+        }
     }
 
     public static boolean actualizarArancel(Arancel arancel) {

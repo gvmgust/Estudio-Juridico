@@ -31,7 +31,7 @@ import utils.SQL;
 public class Main {
 
     public static void main(String[] args) {
-        //style();
+        style();
         con = Conexion.getInstance();
 
         frame = login = new Login();
@@ -72,7 +72,7 @@ public class Main {
         login.dispose();
         switch (tipo) {
             case Usuario.SECRETARIA: {
-                frame = new GuiSecretaria();
+                guiSecretaria = new GuiSecretaria();
             }
             break;
             case Usuario.ABOGADO: {
@@ -103,8 +103,10 @@ public class Main {
     public static Frame frame;
     public static RegistroDocumento registroDocumento;
     public static GuiAdmin guiAdmin;
-
+    public static GuiSecretaria guiSecretaria;
+   
     // tabla de valores
     public static int REGISTRODOCUMENTO = 0;
     public static int GUIADMIN = 1;
+    public static int GUISECRETARIA = 2;
 }

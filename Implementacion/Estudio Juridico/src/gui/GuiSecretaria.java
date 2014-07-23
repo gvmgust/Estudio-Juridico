@@ -12,6 +12,9 @@
  */
 package gui;
 
+import data.Persona;
+import domains.ManagerPersona;
+import javax.swing.JOptionPane;
 import pack.Main;
 
 public class GuiSecretaria extends javax.swing.JFrame {
@@ -49,8 +52,19 @@ public class GuiSecretaria extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 0), 1, true), "Registrar Cita", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Comic Sans MS", 0, 14), new java.awt.Color(255, 51, 0))); // NOI18N
 
         jButton1.setText("Buscar Persona");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Buscar Caso");
+        jButton2.setEnabled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Nombre de la persona Buscada");
 
@@ -199,6 +213,29 @@ public class GuiSecretaria extends javax.swing.JFrame {
         Main.guiGestionarArancel = new GuiGestionarArancel();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        persona = ManagerPersona.buscarPersona(JOptionPane.showInputDialog("Indique el Numero de Carnet"));
+        GuiGestionarPersona gp;
+        if (persona == null) {
+            gp = GuiGestionarPersona.getInstance(persona, id);
+        } else {
+            mostrarNombrePersona();            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void mostrarNombrePersona(){
+        if(persona != null){
+            jLabel1.setText(persona.nombrePersona());
+            jButton2.setEnabled(true);
+        }
+    }
+    
+    public Persona persona;
+    public int id = Main.GUISECRETARIA;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
